@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro | Advanced Smart Logistics</title>
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="logo.jpg">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI','Roboto',sans-serif;}
+    body,html{height:100%;overflow:hidden;}
+    #particles-js{position:fixed;width:100%;height:100%;z-index:-1;background:linear-gradient(rgba(10,25,47,.85),rgba(10,25,47,.85)),url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5') no-repeat center/cover;}
+    .container{display:flex;justify-content:center;align-items:center;height:100%;}
+    .register-box{width:350px;background:rgba(0,20,40,.8);backdrop-filter:blur(12px);padding:40px;border-radius:15px;box-shadow:0 0 25px rgba(0,200,255,.15);color:#fff;text-align:center;}
+    h2{color:#00d9ff;margin-bottom:18px;}
+    input,select{width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px;background:rgba(255,255,255,.1);color:#fff;}
+    input::placeholder{color:#a8b2d1;}
+    button{width:100%;padding:12px;border:none;border-radius:8px;background:#0077b6;font-weight:bold;color:#fff;cursor:pointer;margin-top:8px;transition:.3s;}
+    button:hover{background:#00b4d8;transform:translateY(-2px);}
+    .back-button{margin-top:12px;background:#023e8a;}
+    .back-button:hover{background:#0077b6;}
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="container">
+    <div class="register-box">
+      <h2>📝 Registrarse</h2>
+      <form id="registerForm">
+        <input id="nombre" placeholder="Nombre completo" required>
+        <input id="usuario" placeholder="Usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <!-- Nuevo: selección de rol -->
+        <select id="rol" required>
+          <option value="colaborador" selected>Colaborador</option>
+          <option value="admin">Administrador</option>
+        </select>
+        <button type="submit">Crear cuenta</button>
+      </form>
+      <button class="back-button" onclick="location.href='login.html'">⬅ Volver al Login</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js",{particles:{number:{value:80},color:{value:"#00d9ff"},shape:{type:"circle"},opacity:{value:0.3},size:{value:3},line_linked:{enable:true,distance:150,color:"#00d9ff",opacity:0.4,width:1},move:{enable:true,speed:2}}});
+
+    document.getElementById('registerForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const nombre=document.getElementById('nombre').value.trim();
+      const usuario=document.getElementById('usuario').value.trim();
+      const password=document.getElementById('password').value.trim();
+      const usuarios=JSON.parse(localStorage.getItem('usuarios'))||[];
+      if(usuarios.some(u=>u.usuario===usuario)){alert('El usuario ya existe');return;}
+      usuarios.push({nombre,usuario,password,rol:'colaborador'});
+      localStorage.setItem('usuarios',JSON.stringify(usuarios));
+      alert('Registro exitoso, ahora puede iniciar sesión.');
+      location.href='login.html';
+    });
+  </script>
+</body>
+</html>

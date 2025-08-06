@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Administrador - Advanced Smart Logistics</title>
+<link rel="icon" href="logo.jpg">
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI','Roboto',sans-serif;}
+body, html {height: 100%; overflow: hidden;}
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)),
+              url('https://images.unsplash.com/photo-1581093448799-6b3e86c9f1f4') no-repeat center center fixed;
+  background-size: cover;
+  z-index: -1;
+}
+header {
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #00d9ff;
+}
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 30px;
+  gap: 20px;
+}
+.card {
+  background: rgba(0, 20, 40, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  width: 250px;
+  height: 160px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,200,255,0.15);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0,200,255,0.3);
+}
+h3 {color: #64ffda; margin-bottom: 10px;}
+p {color: #a8b2d1;}
+button {
+  padding: 10px 20px; margin: 5px; border: none;
+  background: #0077b6; border-radius: 8px;
+  font-weight: bold; color: white; cursor: pointer;
+  transition: 0.3s ease;
+}
+button:hover {background: #00b4d8; transform: translateY(-2px);}
+footer {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+  color: #a8b2d1;
+}
+</style>
+</head>
+<body>
+<script>
+if (sessionStorage.getItem('adminLogueado') !== 'true') {
+  alert('Acceso no autorizado. Inicia sesión primero.');
+  window.location.href = 'login.html';
+}
+</script>
+<div id="particles-js"></div>
+
+<header>⚙ Panel del Administrador</header>
+<main>
+  <div class="card" onclick="alert('Gestión de usuarios en construcción')">
+    <h3>👤 Usuarios</h3>
+    <p>Administrar cuentas</p>
+  </div>
+  <div class="card" onclick="alert('Inventario en construcción')">
+    <h3>📦 Inventario</h3>
+    <p>Control de productos</p>
+  </div>
+  <div class="card" onclick="alert('Seguimiento de envíos en construcción')">
+    <h3>🚚 Envíos</h3>
+    <p>Monitoreo de entregas</p>
+  </div>
+  <div class="card" onclick="alert('Reportes en construcción')">
+    <h3>📊 Reportes</h3>
+    <p>Análisis y estadísticas</p>
+  </div>
+</main>
+<div style="text-align:center; margin:20px;">
+  <button onclick="window.location.href='index.html'">⬅ Volver al Inicio</button>
+  <button onclick="sessionStorage.removeItem('adminLogueado'); window.location.href='login.html'">🔒 Cerrar Sesión</button>
+</div>
+<footer>© 2025 Advanced Smart Logistics</footer>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 80 },
+    color: { value: "#00d9ff" },
+    shape: { type: "circle" },
+    opacity: { value: 0.3 },
+    size: { value: 3 },
+    line_linked: { enable: true, distance: 150, color: "#00d9ff", opacity: 0.4, width: 1 },
+    move: { enable: true, speed: 2 }
+  }
+});
+</script>
+</body>
+</html>

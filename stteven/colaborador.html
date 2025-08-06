@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Colaborador | Advanced Smart Logistics</title>
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="logo.jpg">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI','Roboto',sans-serif;}
+    body,html{height:100%;overflow:hidden;}
+    #particles-js{position:fixed;width:100%;height:100%;z-index:-1;background:linear-gradient(rgba(10,25,47,.85),rgba(10,25,47,.85)),url('https://images.unsplash.com/photo-1529070538774-1843cb3265df') no-repeat center/cover;}
+    header{background:rgba(0,0,0,.6);padding:22px;text-align:center;font-size:1.9rem;color:#00d9ff;}
+    main{display:flex;flex-wrap:wrap;justify-content:center;padding:38px;gap:24px;}
+    .card{width:260px;height:160px;background:rgba(0,20,40,.8);backdrop-filter:blur(12px);border-radius:15px;text-align:center;padding:22px;color:#fff;box-shadow:0 0 22px rgba(0,200,255,.15);cursor:pointer;transition:.3s;}
+    .card:hover{transform:translateY(-6px);box-shadow:0 0 30px rgba(0,200,255,.3);}
+    h3{color:#00d9ff;margin-bottom:6px;}
+    p{color:#a8b2d1;}
+    .logout{margin:25px auto 0;display:block;padding:12px 26px;border:none;border-radius:10px;background:#0077b6;font-weight:bold;color:#fff;cursor:pointer;transition:.3s;}
+    .logout:hover{background:#00b4d8;transform:translateY(-2px);}  </style>
+</head>
+<body>
+  <script>if(sessionStorage.getItem('rol')!=='colaborador'){alert('Acceso no autorizado');location.href='login.html';}</script>
+  <div id="particles-js"></div>
+  <header>🚚 Panel del Colaborador</header>
+  <main>
+    <div class="card" onclick="location.href='RastreoPaquete.html'">
+      <h3>📍 Rastreo</h3>
+      <p>Ver ubicación de mi pedido</p>
+    </div>
+    <div class="card" onclick="alert('Próximamente: carga de documentos')">
+      <h3>🗂 Documentos</h3>
+      <p>Subir / descargar</p>
+    </div>
+  </main>
+  <button class="logout" onclick="sessionStorage.clear();location.href='login.html'">🔒 Cerrar Sesión</button>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>particlesJS("particles-js",{particles:{number:{value:80},color:{value:"#00d9ff"},shape:{type:"circle"},opacity:{value:0.3},size:{value:3},line_linked:{enable:true,distance:150,color:"#00d9ff",opacity:0.4,width:1},move:{enable:true,speed:2}}});</script>
+</body>
+</html>

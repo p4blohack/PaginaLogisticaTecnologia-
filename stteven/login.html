@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión | Advanced Smart Logistics</title>
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="logo.jpg">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI','Roboto',sans-serif;}
+    body,html{height:100%;overflow:hidden;}
+    #particles-js{position:fixed;width:100%;height:100%;z-index:-1;background:linear-gradient(rgba(10,25,47,.85),rgba(10,25,47,.85)),url('https://images.unsplash.com/photo-1581093588401-22d7a4e59f77') no-repeat center/cover;}
+    .container{display:flex;justify-content:center;align-items:center;height:100%;}
+    .login-box{width:330px;background:rgba(0,20,40,.8);backdrop-filter:blur(12px);padding:40px;border-radius:15px;box-shadow:0 0 25px rgba(0,200,255,.15);text-align:center;color:#fff;}
+    .login-box img{width:150px;margin-bottom:18px;border-radius:10px;box-shadow:0 0 15px rgba(0,200,255,.3);}
+    h2{color:#00d9ff;margin-bottom:20px;letter-spacing:1px;}
+    input{width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px;background:rgba(255,255,255,.1);color:#fff;}
+    input::placeholder{color:#a8b2d1;}
+    button{width:100%;padding:12px;border:none;border-radius:8px;background:#0077b6;font-weight:bold;color:#fff;cursor:pointer;margin-top:8px;transition:.3s;}
+    button:hover{background:#00b4d8;transform:translateY(-2px);}
+    .back-button{margin-top:12px;background:#023e8a;}
+    .back-button:hover{background:#0077b6;}
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="container">
+    <div class="login-box">
+      <img src="logo.jpg" alt="logo">
+      <h2>🔐 Iniciar Sesión</h2>
+      <form id="loginForm">
+        <input type="text" id="usuario" placeholder="Usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit">Ingresar</button>
+      </form>
+      <button class="back-button" onclick="location.href='index.html'">⬅ Volver al Inicio</button>
+      <button class="back-button" onclick="location.href='registro.html'">📝 Registrarse</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js",{particles:{number:{value:80},color:{value:"#00d9ff"},shape:{type:"circle"},opacity:{value:0.3},size:{value:3},line_linked:{enable:true,distance:150,color:"#00d9ff",opacity:0.4,width:1},move:{enable:true,speed:2}}});
+
+    document.getElementById('loginForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const usuario=document.getElementById('usuario').value.trim();
+      const password=document.getElementById('password').value.trim();
+      if(usuario==='admin'&&password==='1234'){
+        sessionStorage.setItem('rol','admin');location.href='admin.html';return;}
+      const usuarios=JSON.parse(localStorage.getItem('usuarios'))||[];
+      const u=usuarios.find(x=>x.usuario===usuario&&x.password===password);
+      if(!u){alert('Usuario o contraseña incorrectos');return;}
+      sessionStorage.setItem('rol',u.rol||'colaborador');sessionStorage.setItem('nombre',u.nombre||usuario);
+      location.href=u.rol==='colaborador'?'colaborador.html':'admin.html';
+    });
+  </script>
+</body>
+</html>
