@@ -39,20 +39,46 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    particlesJS("particles-js",{particles:{number:{value:80},color:{value:"#00d9ff"},shape:{type:"circle"},opacity:{value:0.3},size:{value:3},line_linked:{enable:true,distance:150,color:"#00d9ff",opacity:0.4,width:1},move:{enable:true,speed:2}}});
+  document.getElementById('loginForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const usuario = document.getElementById('usuario').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    document.getElementById('loginForm').addEventListener('submit',e=>{
-      e.preventDefault();
-      const usuario=document.getElementById('usuario').value.trim();
-      const password=document.getElementById('password').value.trim();
-      if(usuario==='admin'&&password==='1234'){
-        sessionStorage.setItem('rol','admin');location.href='admin.html';return;}
-      const usuarios=JSON.parse(localStorage.getItem('usuarios'))||[];
-      const u=usuarios.find(x=>x.usuario===usuario&&x.password===password);
-      if(!u){alert('Usuario o contraseña incorrectos');return;}
-      sessionStorage.setItem('rol',u.rol||'colaborador');sessionStorage.setItem('nombre',u.nombre||usuario);
-      location.href=u.rol==='colaborador'?'colaborador.html':'admin.html';
-    });
-  </script>
+    // Login de administrador fijo (opcional)
+    if (usuario === 'admin' && password === '1234') {
+      sessionStorage.setItem('rol', 'admin');
+      location.href = 'admin_panel.html';
+      return;
+    }
+
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    const u = usuarios.find(x => x.usuario === usuario && x.password === password);
+    if (!u) {
+      alert('Usuario o contraseña incorrectos');
+      return;
+    }
+
+    sessionStorage.setItem('rol', u.rol);
+    sessionStorage.setItem('nombre', u.nombre || usuario);
+
+    // Redirigir al panel según rol
+    switch (u.rol) {
+      case 'admin':
+        location.href = 'admin_panel.html';
+        break;
+      case 'colaborador':
+        location.href = 'colaborador.html';
+        break;
+      case 'empresa':
+        location.href = 'empresa.html';
+        break;
+      case 'usuario':
+        location.href = 'usuario.html';
+        break;
+      default:
+        alert('Rol desconocido');
+    }
+  });
+</script>
 </body>
 </html>
