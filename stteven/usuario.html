@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Usuario | Advanced Smart Logistics</title>
+  <link rel="icon" href="logo.jpg">
+  <style>
+    body { margin:0; font-family:'Segoe UI'; background:#0a192f; color:#fff; }
+    header { background:#001d3d; padding:22px; text-align:center; font-size:1.9rem; color:#00d9ff; }
+    main { padding:25px; }
+    .section { background:#002c54; margin-bottom:20px; padding:20px; border-radius:12px; }
+    h3 { color:#64ffda; margin-bottom:10px; }
+    button { padding:10px 20px; background:#0077b6; color:white; border:none; border-radius:8px; cursor:pointer; }
+    button:hover { background:#00b4d8; }
+  </style>
+</head>
+<body>
+  <header>🧍 Panel Usuario</header>
+  <main>
+    <div class="section">
+      <h3>📦 Catálogo de Productos</h3>
+      <div id="catalogo">Cargando productos...</div>
+    </div>
+    <div class="section">
+      <h3>📍 Ubicación de Pedido</h3>
+      <button onclick="location.href='RastreoPaquete.html'">Ver Rastreo</button>
+    </div>
+  </main>
+  <script>
+    const productosEjemplo = [
+      { nombre: 'Producto A', stock: 25 },
+      { nombre: 'Producto B', stock: 0 },
+      { nombre: 'Producto C', stock: 10 }
+    ];
+    const catalogo = document.getElementById('catalogo');
+    catalogo.innerHTML = productosEjemplo.map(p => `<p>${p.nombre} — Stock: ${p.stock}</p>`).join('');
+  </script>
+</body>
+</html>
