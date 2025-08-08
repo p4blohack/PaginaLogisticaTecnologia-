@@ -70,10 +70,10 @@ footer {
 </head>
 <body>
 <script>
-if (sessionStorage.getItem('adminLogueado') !== 'true') {
-  alert('Acceso no autorizado. Inicia sesión primero.');
-  window.location.href = 'login.html';
-}
+  if (sessionStorage.getItem('rol') !== 'admin') {
+    alert('Acceso no autorizado. Inicia sesión primero.');
+    window.location.href = 'login.html';
+  }
 </script>
 <div id="particles-js"></div>
 
